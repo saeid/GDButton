@@ -19,7 +19,7 @@ class AnimButtonPanel: UIView{
     
     public var buttonColor: UIColor = UIColor.red
     public var plusColor: UIColor = UIColor.white
-    public var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.5)
+    public var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.2)
     public var buttonSize: CGFloat = 50.0
     public var space: CGFloat = 8.0
     
@@ -56,7 +56,7 @@ class AnimButtonPanel: UIView{
     
     //MARK: - helper funcs
     private func convertToRadians(angle: CGFloat) -> CGFloat{
-        return angle / 180 * CGFloat(M_PI)
+        return angle / 180 * CGFloat(Double.pi)
     }
     
     //MARK: - main button
@@ -104,10 +104,10 @@ class AnimButtonPanel: UIView{
     private func makeOverlay(){
         overlayShape.removeFromSuperlayer()
         overlayShape.frame = CGRect(
-            x: -UIScreen.main.bounds.width + (UIScreen.main.bounds.width - frame.origin.x),
-            y: -UIScreen.main.bounds.height + (UIScreen.main.bounds.height - frame.origin.y),
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.height)
+            x: -UIScreen.main.bounds.width,
+            y: -UIScreen.main.bounds.height,
+            width: UIScreen.main.bounds.width + (frame.width * 2),
+            height: UIScreen.main.bounds.height + (frame.height * 2))
         overlayShape.backgroundColor = overlayColor.cgColor
         overlayShape.zPosition = -1
         overlayShape.opacity = 0
@@ -142,7 +142,7 @@ class AnimButtonPanel: UIView{
             
             let buttonPoint = self.convert(point, from: self)
             if !self.bounds.contains(buttonPoint){
-                close()
+                openCloseView()
                 return super.hitTest(point, with: event)
             }
         }
@@ -169,14 +169,13 @@ class AnimButtonPanel: UIView{
         let touch = touches.first
         if touch?.tapCount == 1{
             if touch?.location(in: self) == nil{
-                isOpened = false
                 return
             }
             openCloseView()
         }
     }
     
-    private func openCloseView(){
+    public func openCloseView(){
         if isOpened{
             close()
         }else{
@@ -265,7 +264,6 @@ class AnimButton: UIView{
             createImageView()
         }
     }
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
