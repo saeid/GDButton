@@ -5,15 +5,13 @@ Animated menu button for iOS
 ![1](https://cloud.githubusercontent.com/assets/9967486/24078805/1cc2e75c-0c8d-11e7-9a47-926ada6ca641.gif)
 
 
-# Requirements
-xcode 8+
-
-swift 3+
-
-iOS 8+
+## Requirements
+- xcode 8+
+- swift 3+
+- iOS 8+
 
 
-# Installation
+## Installation
 Install manually
 ------
 Drag "GDButton.swift" to your project and use!
@@ -23,8 +21,9 @@ Install using Cocoapods
 Soon!
 
 
-# How to use
-```
+## How to use
+
+```swift
     //create an instance of GDButton() or assign to a view in storyboard
     let buttonView = GDButton()
 
@@ -46,5 +45,4 @@ Soon!
             self.buttonView.openCloseView()
         })
     }
-
 ```

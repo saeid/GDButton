@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var buttonView: AnimButtonPanel!
     
     
@@ -24,21 +25,25 @@ class ViewController: UIViewController {
     }
     
     func createSampleButtons(){
-        buttonView.addButton(with: "test number 1", icon: UIImage(named: "clock")!, handler: { _ in
+        buttonView.addButton(with: "test number 1", icon: UIImage(named: "clock")!, handler: { [ weak self ] _ in
             print("Hello! i am button 1")
-            self.buttonView.openCloseView()
+            self!.detailLabel.text = "Hello! i am button 1"
+            self!.buttonView.openCloseView()
         })
-        buttonView.addButton(with: "test number 2", icon: UIImage(named: "exchange")!, handler: { _ in
+        buttonView.addButton(with: "test number 2", icon: UIImage(named: "exchange")!, handler: {  [ weak self ] _ in
             print("Hello! i am button 2")
-            self.buttonView.openCloseView()
+            self!.detailLabel.text = "Hello! i am button 2"
+            self!.buttonView.openCloseView()
         })
-        buttonView.addButton(with: "test number 3", icon: UIImage(named: "clock")!, handler: { _ in
+        buttonView.addButton(with: "test number 3", icon: UIImage(named: "clock")!, handler: { [ weak self ] _ in
             print("Hello! i am button 3")
-            self.buttonView.openCloseView()
+            self!.detailLabel.text = "Hello! i am button 3"
+            self!.buttonView.openCloseView()
         })
-        buttonView.addButton(with: "test number 4", icon: UIImage(named: "exchange")!, handler: { _ in
+        buttonView.addButton(with: "test number 4", icon: UIImage(named: "exchange")!, handler: { [ weak self ] _ in
             print("Hello! i am button 4")
-            self.buttonView.openCloseView()
+            self!.detailLabel.text = "Hello! i am button 4"
+            self!.buttonView.openCloseView()
         })
 
     }
